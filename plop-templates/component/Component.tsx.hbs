@@ -1,0 +1,40 @@
+import React, { useContext } from "react";
+import classnames from 'classnames';
+// import { ThemeContext } from '../context/ThemeContext';
+
+export interface Props {
+    children?: React.ReactNode;
+    /**
+     * Additional classes
+     */
+    className?: string,
+    /**
+     * render as some other component or DOM tag
+     */
+    tag?: React.ElementType;
+}
+
+export interface {{pascalCase name}}AsComponentProp extends Props, React.ComponentProps<any> {}
+
+export type {{pascalCase name}}Props = Props | {{pascalCase name}}AsComponentProp;
+
+type RefType = React.ElementType;
+
+const {{pascalCase name}} = React.forwardRef<RefType, {{pascalCase name}}Props>(({
+  className = '',
+  children,
+  tag: Tag = 'div',
+  ...otherProps
+}, ref) => {
+  // const { theme: { {{camelCase name}} } } = useContext(ThemeContext)
+
+  const props = {
+      className: classnames(className),
+      ref,
+      ...otherProps
+  }
+
+  return <Tag {...props}>{ children }</Tag>
+})
+
+export default {{pascalCase name}};
